@@ -11,6 +11,7 @@
 - [x] MS SQL
 - [x] Entity Framework
 - [x] Swagger
+- [ ] Serilog
 
 ---
 

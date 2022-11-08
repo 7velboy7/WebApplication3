@@ -12,7 +12,9 @@
 - [x] Entity Framework
 - [x] Swagger
 
-#ToDo
+---
+
+# ToDo
 - product Sections
 - filters
 - shopping basket

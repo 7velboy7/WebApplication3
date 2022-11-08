@@ -24,3 +24,15 @@
 2022-11-07 23:17:17.612 +02:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
 2022-11-07 23:17:17.645 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7174/swagger/favicon-32x32.png - - - 200 628 image/png 41.2781ms
 2022-11-07 23:17:17.728 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7174/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 204.9032ms
+2022-11-08 18:03:55.323 +02:00 [INF] User profile is available. Using 'C:\Users\oleksandra.velboi\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-11-08 18:03:55.903 +02:00 [INF] Now listening on: https://localhost:7174
+2022-11-08 18:03:55.904 +02:00 [INF] Now listening on: http://localhost:5174
+2022-11-08 18:03:55.909 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-11-08 18:03:55.910 +02:00 [INF] Hosting environment: Development
+2022-11-08 18:03:55.911 +02:00 [INF] Content root path: C:\Projects\WebApp3\WebApplication3\
+2022-11-08 18:03:56.703 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7174/swagger/index.html - -
+2022-11-08 18:03:57.003 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7174/swagger/index.html - - - 200 - text/html;charset=utf-8 301.5309ms
+2022-11-08 18:03:57.009 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7174/_framework/aspnetcore-browser-refresh.js - -
+2022-11-08 18:03:57.026 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7174/_framework/aspnetcore-browser-refresh.js - - - 200 11988 application/javascript;+charset=utf-8 17.1140ms
+2022-11-08 18:03:57.447 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7174/swagger/v1/swagger.json - -
+2022-11-08 18:03:57.572 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7174/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 124.6305ms

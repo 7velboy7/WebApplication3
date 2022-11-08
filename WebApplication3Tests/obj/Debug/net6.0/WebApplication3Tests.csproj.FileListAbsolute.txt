@@ -1,0 +1,6 @@
+C:\Projects\WebApp3\WebApplication3Tests\bin\Debug\net6.0\CoverletSourceRootsMapping
+C:\Projects\WebApp3\WebApplication3Tests\obj\Debug\net6.0\WebApplication3Tests.csproj.AssemblyReference.cache
+C:\Projects\WebApp3\WebApplication3Tests\obj\Debug\net6.0\WebApplication3Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\WebApp3\WebApplication3Tests\obj\Debug\net6.0\WebApplication3Tests.AssemblyInfoInputs.cache
+C:\Projects\WebApp3\WebApplication3Tests\obj\Debug\net6.0\WebApplication3Tests.AssemblyInfo.cs
+C:\Projects\WebApp3\WebApplication3Tests\obj\Debug\net6.0\WebApplication3Tests.csproj.CoreCompileInputs.cache

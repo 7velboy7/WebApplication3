@@ -1,0 +1,14 @@
+C:\Projects\WebApp3\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.deps.json
+C:\Projects\WebApp3\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+C:\Projects\WebApp3\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Projects\WebApp3\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Projects\WebApp3\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\WebApp3\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfoInputs.cache
+C:\Projects\WebApp3\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfo.cs
+C:\Projects\WebApp3\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Projects\WebApp3\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.dll
+C:\Projects\WebApp3\DataAccessLayer\obj\Debug\net6.0\refint\DataAccessLayer.dll
+C:\Projects\WebApp3\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.pdb
+C:\Projects\WebApp3\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll
+C:\Projects\WebApp3\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.runtimeconfig.json
+C:\Projects\WebApp3\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.genruntimeconfig.cache

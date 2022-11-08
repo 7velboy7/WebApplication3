@@ -41,7 +41,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddMvc();
-builder.Services.AddRazorPages();
+//builder.Services.AddRazorPages();
 builder.Services.AddDbContext<Context>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"],
 x => x.MigrationsAssembly(typeof(Context).Assembly.GetName().Name)));
 builder.Services.AddTransient<IProductRepository, ProductRepository>();

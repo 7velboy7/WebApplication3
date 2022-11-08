@@ -1,6 +1,6 @@
 # WebApplication3
 
-## This Project was created for better understanding of how Web API works. I try to make a copy of ukrainin online store called ROZETKA
+## This Project was created for better understanding of how Web API works. I try to make a copy of ukrainian online store called ROZETKA
 ---
 
 

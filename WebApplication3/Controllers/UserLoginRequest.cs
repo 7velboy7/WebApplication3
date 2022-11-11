@@ -1,6 +1,5 @@
-<<<<<<< HEAD
+
 ﻿using System.ComponentModel.DataAnnotations;
-=======
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,19 +8,18 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using WebApplication3.RequestsModels.RequestModels;
->>>>>>> 14c48bd26432dbd3aefa76d46a51b3c0af07bebb
 
 namespace WebApplication3.Controllers
 {
     public class UserLoginRequest
     {
-<<<<<<< HEAD
+
         [Required(ErrorMessage = "User name is required")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
-=======
+
         [Route("api/[controller]")]
         [ApiController]
         // Let's thinkaabout renaming this controller to smth like UserManegementController
@@ -105,6 +103,6 @@ namespace WebApplication3.Controllers
             }
 
         }
->>>>>>> 14c48bd26432dbd3aefa76d46a51b3c0af07bebb
+
     }
 }

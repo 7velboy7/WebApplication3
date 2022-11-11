@@ -22,7 +22,7 @@ namespace WebApplication3.Controllers
             _categoryService = categoryService;
         }
 
-        [Route("{id}")] // can be not used
+        [Route("{id}")] 
         [HttpGet]
         public async Task<IActionResult> GetCategoryByID(int id) // should be from query explicitly
         {
@@ -33,7 +33,7 @@ namespace WebApplication3.Controllers
             }
             catch (CategoryNotFoundException ex)
             {
-                _logger.LogError(ex, $"My own message");
+                _logger.LogError(ex, ex.Message, $"My own message"); //send message from the method
                 return NotFound();
             }
             catch (Exception ex)
@@ -49,7 +49,7 @@ namespace WebApplication3.Controllers
         {
             var maybeWillModifiedInFutureCategoryRequestModel = await _categoryService.CreateProductAsync(categoryModel);
 
-            _logger.LogInformation("new category was added");
+            _logger.LogInformation($"Product with was deleteded category id: {categoryModel.Id} was added");
             return Ok(maybeWillModifiedInFutureCategoryRequestModel);
 
             // GET all categories from DB
@@ -61,7 +61,7 @@ namespace WebApplication3.Controllers
         {
            await _categoryService.DeleteProductByIdAsync(id);
 
-            _logger.LogInformation("Category was removed");
+            _logger.LogInformation($"Category with id:{id} was removed");
             return NoContent();
 
         }
@@ -72,7 +72,7 @@ namespace WebApplication3.Controllers
         {
             var maybeWillModifiedInFutureCategoryRequestModel = await _categoryService.UpdateProductAsync(categoryModel);
 
-            _logger.LogInformation("Category was changed");
+            _logger.LogInformation($"Category {categoryModel} with id: {categoryModel.Id} was changed");
             return Ok(maybeWillModifiedInFutureCategoryRequestModel);
         }
 
@@ -83,7 +83,7 @@ namespace WebApplication3.Controllers
 
             var maybeModifiedInFutureategoryList = await _categoryService.GetAllProductAsync();
 
-            _logger.LogInformation("Categories were shown");
+            _logger.LogInformation($"Gategory list was found. Here all the categories: {maybeModifiedInFutureategoryList.ToList()}");
             return Ok(maybeModifiedInFutureategoryList);
 
         }

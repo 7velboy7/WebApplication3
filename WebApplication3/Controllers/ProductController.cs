@@ -22,46 +22,46 @@ namespace WebApplication3.Controllers
             _productService = productService;
         }
 
-        [Route("{Id}")] //done
+        [Route("{Id}")]
         [HttpDelete]
         public async Task<IActionResult> DeleteProductByIdAsync(int id)
         {
             await _productService.DeleteProductByIdAsync(id);  
 
-            _logger.LogInformation("Product was deleted");
+            _logger.LogInformation($"Product with productId: {id} was deleted");
             return NoContent();
         }
 
-        [HttpPost] //done
+        [HttpPost] 
         public async Task<IActionResult> AddProductAsync(ProductRequestModel product)
         {
             var maybeModifiedInFutureProduct = await _productService.CreateProductAsync(product);
             //oblochit obolochkoi try catch
-            _logger.LogInformation("Product was added");
+            _logger.LogInformation($"Product: {product} with productId: {product.Id} was added");
             return Ok(maybeModifiedInFutureProduct);
         }
 
         
-        [HttpPatch] //done
+        [HttpPatch] 
         public async Task<IActionResult> PatchProductAsync(ProductRequestModel product)
         {
              var maybeModifiedInFutureProduct = await _productService.UpdateProductAsync(product);
 
-            _logger.LogInformation("Product was changed");
+            _logger.LogInformation($"Product: {product} with productId{product.Id} was changed");
             return Ok(maybeModifiedInFutureProduct); //here we return the same sheet that we had at the beginning
         }
 
         
-        [HttpGet] //done
+        [HttpGet] 
         public async Task<IActionResult> GetAllProductsAsync()
         {
             var productsViewModelList = await _productService.GetAllProductAsync();
 
-            _logger.LogInformation("Products were shown");
+            _logger.LogInformation($"Products list was found. Here all the products: {productsViewModelList.ToList()}");
             return Ok(productsViewModelList);
         }
 
-        [Route("{Id}")] // done
+        [Route("{Id}")] 
         [HttpGet]
         public async Task<IActionResult> GetProductByIdAsync(int id)
         {
@@ -69,17 +69,17 @@ namespace WebApplication3.Controllers
             {
                var productsViewModel = await _productService.GetProductByIdAsync(id);
 
-                _logger.LogInformation("Product was shown");
+                _logger.LogInformation($"Product: {productsViewModel} was found");
                 return Ok(productsViewModel);
             }
-            catch (ProductNotFoundException ex)
+            catch (ProductNotFoundException ex) //why dont we need not found ex?
             {
-                _logger.LogInformation(ex, "request has been failed");
+                _logger.LogError(ex, ex.Message);
                 return NotFound();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "request has been failed");
+                _logger.LogError(ex, "request has been failed, try to debug ");
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
             }

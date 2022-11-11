@@ -15,10 +15,11 @@ namespace WebApplication3.Controllers
     {
         private readonly ICategotyService _categoryService;
         private readonly ILogger<CategoriesController> _logger;
-       
-        public CategoriesController(ILogger<CategoriesController> logger)
+
+        public CategoriesController(ILogger<CategoriesController> logger, ICategotyService categoryService)
         {
             _logger = logger;
+            _categoryService = categoryService;
         }
 
         [Route("{id}")] // can be not used

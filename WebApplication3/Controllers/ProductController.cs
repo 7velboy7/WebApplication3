@@ -16,9 +16,10 @@ namespace WebApplication3.Controllers
     {
         private readonly ILogger _logger;
         private readonly IProductService _productService;
-        public ProductsController(IProductRepository prouductrepository, ILogger<ProductsController> logger, IMapper<Product, ProductViewRequestModel> productMapper)
+        public ProductsController(IProductRepository prouductrepository, ILogger<ProductsController> logger, IMapper<Product, ProductViewRequestModel> productMapper, IProductService productService)
         {
             _logger = logger;
+            _productService = productService;
         }
 
         [Route("{Id}")] //done

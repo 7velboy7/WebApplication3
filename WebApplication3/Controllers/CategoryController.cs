@@ -4,6 +4,7 @@ using DataAccessLayer.Repository.RepositoryInterfaces;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication3.Mappers.MapperInterface;
 using WebApplication3.RequestsModels.RequestModels;
+using WebApplication3.Services.Interfaces;
 using WebApplication3.UserViewRequestsModel;
 
 namespace WebApplication3.Controllers
@@ -12,15 +13,12 @@ namespace WebApplication3.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
+        private readonly ICategotyService _categoryService;
         private readonly ILogger<CategoriesController> _logger;
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IMapper<Category, CategoryViewRequestModel> _categoryMapper; //connects view models with DB models
-
-        public CategoriesController(ICategoryRepository categoryRepository, ILogger<CategoriesController> logger, IMapper<Category, CategoryViewRequestModel> categoryMapper)
+       
+        public CategoriesController(ILogger<CategoriesController> logger)
         {
-            _categoryRepository = categoryRepository;
             _logger = logger;
-            _categoryMapper = categoryMapper;
         }
 
         [Route("{id}")] // can be not used
@@ -29,8 +27,7 @@ namespace WebApplication3.Controllers
         {
             try
             {
-                var expectedCategory = await _categoryRepository.GetCategorytByIdAsync(id);
-                var categoryViewModel = _categoryMapper.Map(expectedCategory);
+                var categoryViewModel = await _categoryService.GetProductByIdAsync(id);
                 return Ok(categoryViewModel);
             }
             catch (CategoryNotFoundException ex)
@@ -49,53 +46,44 @@ namespace WebApplication3.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCategoryAsync(CategoryRequestModel categoryModel)
         {
-            var newCategory = new Category()
-            {
-                Name = categoryModel.Name,
-                ParentCategoryId = categoryModel.ParentCategoryId
-            };
-            await _categoryRepository.AddCategoryAsync(newCategory);
+            var maybeWillModifiedInFutureCategoryRequestModel = await _categoryService.CreateProductAsync(categoryModel);
 
-            return Ok(newCategory);
+            _logger.LogInformation("new category was added");
+            return Ok(maybeWillModifiedInFutureCategoryRequestModel);
 
             // GET all categories from DB
             // Check that categoryModel.Name does not exist in the list from DB
-
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteCategoryAsync(int id)
         {
-            await _categoryRepository.RemoveCategoryByIdAsync(id);
+           await _categoryService.DeleteProductByIdAsync(id);
+
+            _logger.LogInformation("Category was removed");
             return NoContent();
 
         }
 
 
         [HttpPatch]
-        public async Task<IActionResult> ChanchePartlyOrFullyCategoryAsync(CategoryRequestModel categoryModel) //check this
+        public async Task<IActionResult> ChancheCategoryAsync(CategoryRequestModel categoryModel) //check this
         {
-            var expectedCategory = await _categoryRepository.GetCategorytByIdAsync(categoryModel.Id);
-            expectedCategory.Name = categoryModel.Name;
-            expectedCategory.ParentCategoryId = categoryModel.ParentCategoryId;
+            var maybeWillModifiedInFutureCategoryRequestModel = await _categoryService.UpdateProductAsync(categoryModel);
 
-            return Ok(expectedCategory);
+            _logger.LogInformation("Category was changed");
+            return Ok(maybeWillModifiedInFutureCategoryRequestModel);
         }
 
 
         [HttpGet]
         public async Task<IActionResult> GetAllCategoriesAsync()
         {
-            var expectedCategories = await _categoryRepository.GetAllCategoriesAsync();
-            var categoriesViewModelList = new List<CategoryViewRequestModel>();
 
-            foreach (var expectedCategory in expectedCategories)
-            {
-                var categoryViewModelresult = _categoryMapper.Map(expectedCategory);
-                categoriesViewModelList.Add(categoryViewModelresult);
-            }
+            var maybeModifiedInFutureategoryList = await _categoryService.GetAllProductAsync();
 
-            return Ok(categoriesViewModelList);
+            _logger.LogInformation("Categories were shown");
+            return Ok(maybeModifiedInFutureategoryList);
 
         }
     }

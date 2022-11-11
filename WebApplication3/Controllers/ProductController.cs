@@ -4,6 +4,7 @@ using DataAccessLayer.Repository.RepositoryInterfaces;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication3.Mappers.MapperInterface;
 using WebApplication3.RequestsModels.RequestModels;
+using WebApplication3.Services.Interfaces;
 using WebApplication3.UserViewRequestsModel;
 
 namespace WebApplication3.Controllers
@@ -13,82 +14,61 @@ namespace WebApplication3.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly ILogger<ProductsController> _logger;
-        private readonly IProductRepository _prouductRepository;
-        private readonly IMapper<Product, ProductViewRequestModel> _productMapper;
+        private readonly ILogger _logger;
+        private readonly IProductService _productService;
         public ProductsController(IProductRepository prouductrepository, ILogger<ProductsController> logger, IMapper<Product, ProductViewRequestModel> productMapper)
         {
-            _prouductRepository = prouductrepository;
             _logger = logger;
-            _productMapper = productMapper;
         }
 
-        [Route("{Id}")]
+        [Route("{Id}")] //done
         [HttpDelete]
         public async Task<IActionResult> DeleteProductByIdAsync(int id)
         {
-            await _prouductRepository.RemoveProductByIdAsync(id);
+            await _productService.DeleteProductByIdAsync(id);  
+
+            _logger.LogInformation("Product was deleted");
             return NoContent();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddtProductAsync(ProductRequestModel product)
+        [HttpPost] //done
+        public async Task<IActionResult> AddProductAsync(ProductRequestModel product)
         {
-            var newProduct = new Product()
-            {
-                Name = product.Name,
-                Price = product.Price,
-                Description = product.Description,
-                CategoryId = product.ParentCategoryId, //change to category id
-            };
-            //newProduct.Id = product.Id;
-            //newProduct.Name = product.Name;
-            //newProduct.Description = product.Description;
-            //newProduct.CategoryId = product.
-            await _prouductRepository.AddProductAsync(newProduct);
-            return Ok(newProduct);
+            var maybeModifiedInFutureProduct = await _productService.CreateProductAsync(product);
+            //oblochit obolochkoi try catch
+            _logger.LogInformation("Product was added");
+            return Ok(maybeModifiedInFutureProduct);
         }
 
-        [Route("ChangeProduct")]
-        [HttpPatch]
-        public async Task<IActionResult> PatchPartlyOrFullyProductByIdAsync(ProductRequestModel product)
+        
+        [HttpPatch] //done
+        public async Task<IActionResult> PatchProductAsync(ProductRequestModel product)
         {
-            var expectedProduct = await _prouductRepository.GetProductByIdAsync(product.Id);
+             var maybeModifiedInFutureProduct = await _productService.UpdateProductAsync(product);
 
-            expectedProduct.Description = product.Description;
-            expectedProduct.CategoryId = (int)product.ParentCategoryId;
-            expectedProduct.Name = product.Name;
-            expectedProduct.Price = product.Price;
-
-            await _prouductRepository.UpdateProductAsync(expectedProduct);
-            return Ok(expectedProduct);
-
+            _logger.LogInformation("Product was changed");
+            return Ok(maybeModifiedInFutureProduct); //here we return the same sheet that we had at the beginning
         }
 
-        [Route("GetProducts")]
-        [HttpGet]
+        
+        [HttpGet] //done
         public async Task<IActionResult> GetAllProductsAsync()
         {
-            var expectedProductList = await _prouductRepository.GetAllProductsAsync();
-            var productsViewModelList = new List<ProductViewRequestModel>();
+            var productsViewModelList = await _productService.GetAllProductAsync();
 
-            foreach (var expectedProduct in expectedProductList) // LINQ can be used as an option
-            {
-                var productForUserToView = _productMapper.Map(expectedProduct);
-                productsViewModelList.Add(productForUserToView);
-            }
-
+            _logger.LogInformation("Products were shown");
             return Ok(productsViewModelList);
         }
 
-        [Route("GetProductById")]
+        [Route("{Id}")] // done
         [HttpGet]
         public async Task<IActionResult> GetProductByIdAsync(int id)
         {
             try
             {
-                var expectedProduct = await _prouductRepository.GetProductByIdAsync(id);
-                var productsViewModel = _productMapper.Map(expectedProduct);
+               var productsViewModel = await _productService.GetProductByIdAsync(id);
+
+                _logger.LogInformation("Product was shown");
                 return Ok(productsViewModel);
             }
             catch (ProductNotFoundException ex)

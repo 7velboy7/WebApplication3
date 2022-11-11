@@ -9,11 +9,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WebApplication3.Mappers.MapperImplementation;
 using WebApplication3.Mappers.MapperInterface;
-using DataAccessLayer.Repository;
 using DataAccessLayer.Contexts;
-using DataAccessLayer.Entity;
 using DataAccessLayer.Repository.RepositoryInterfaces;
-using DataAccessLayer.Repository.RepositoryImplementation;
 using WebApplication3.UserViewRequestsModel;
 using Serilog;
 

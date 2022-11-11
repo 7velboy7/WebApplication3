@@ -1,6 +1,13 @@
-﻿namespace WebApplication3.Controllers
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApplication3.Controllers
 {
-    internal class UserLoginRequest
+    public class UserLoginRequest
     {
+        [Required(ErrorMessage = "User name is required")]
+        public string UserName { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        public string Password { get; set; }
     }
 }

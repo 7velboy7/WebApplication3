@@ -1,3 +1,5 @@
+
+﻿using System.ComponentModel.DataAnnotations;
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +13,13 @@ namespace WebApplication3.Controllers
 {
     public class UserLoginRequest
     {
+
+        [Required(ErrorMessage = "User name is required")]
+        public string UserName { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        public string Password { get; set; }
+
         [Route("api/[controller]")]
         [ApiController]
         // Let's thinkaabout renaming this controller to smth like UserManegementController
@@ -94,5 +103,6 @@ namespace WebApplication3.Controllers
             }
 
         }
+
     }
 }

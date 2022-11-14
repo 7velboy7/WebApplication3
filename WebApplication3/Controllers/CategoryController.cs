@@ -9,6 +9,7 @@ using WebApplication3.UserViewRequestsModel;
 
 namespace WebApplication3.Controllers
 {
+    // add functions from repository with handling exceptions
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase

@@ -5,8 +5,8 @@ namespace WebApplication3.Services.Interfaces
 {
     public interface ICategotyService
     {
-        Task<CategoryRequestModel> CreateProductAsync(CategoryRequestModel productRequest);
-        Task<CategoryRequestModel> UpdateProductAsync(CategoryRequestModel productRequest);
+        Task<CreateCategoryRequestModel> CreateProductAsync(CreateCategoryRequestModel productRequest);
+        Task<UpdateCategoryRequestModel> UpdateProductAsync(UpdateCategoryRequestModel productRequest);
         Task DeleteProductByIdAsync(int id);
         Task<CategoryViewRequestModel> GetProductByIdAsync(int id);
         Task<IEnumerable<CategoryViewRequestModel>> GetAllProductAsync();

@@ -6,6 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="DTOs\RequestsModels\Constants\**" />
+    <Content Remove="DTOs\RequestsModels\Constants\**" />
+    <EmbeddedResource Remove="DTOs\RequestsModels\Constants\**" />
+    <None Remove="DTOs\RequestsModels\Constants\**" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
@@ -24,10 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="RequestsModels\Constants\" />
   </ItemGroup>
 
 </Project>

@@ -23,6 +23,7 @@ using Serilog;
 /// purchase history
 /// validation
 /// add ability to administrator to block 
+/// analitics in admin acc (summ, perf)
 /// </summary>
 
 var builder = WebApplication.CreateBuilder(args);

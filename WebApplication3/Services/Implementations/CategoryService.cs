@@ -19,7 +19,7 @@ namespace WebApplication3.Services.Implementations
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<CategoryRequestModel> CreateProductAsync(CategoryRequestModel categoryRequest)
+        public async Task<CreateCategoryRequestModel> CreateProductAsync(CreateCategoryRequestModel categoryRequest)
         {
             var newCategory = new Category()
             {
@@ -53,11 +53,15 @@ namespace WebApplication3.Services.Implementations
         public async Task<CategoryViewRequestModel> GetProductByIdAsync(int id)
         {
             var expectedCategory = await _categoryRepository.GetCategorytByIdAsync(id);
+            if (expectedCategory ==  null)
+            {
+                return null;
+            }
             var categoryViewModel = _categoryMapper.Map(expectedCategory);
             return categoryViewModel;
         }
 
-        public async Task<CategoryRequestModel> UpdateProductAsync(CategoryRequestModel categoryRequest)
+        public async Task<UpdateCategoryRequestModel> UpdateProductAsync(UpdateCategoryRequestModel categoryRequest)
         {
             var expectedCategory = await _categoryRepository.GetCategorytByIdAsync(categoryRequest.Id);
             expectedCategory.Name = categoryRequest.Name;

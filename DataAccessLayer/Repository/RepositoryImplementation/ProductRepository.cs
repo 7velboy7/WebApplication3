@@ -38,7 +38,7 @@ namespace DataAccessLayer.Repository.RepositoryImplementation
 
             if (expectedProduct == null)
             {
-                throw new ProductNotFoundException("somehing went wrond. Check if froduct exist in the DataBase or Try to debug 'GetProductByIdAsync' method");
+                return null;
             }
             return expectedProduct;
         }

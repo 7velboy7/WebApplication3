@@ -36,7 +36,7 @@ namespace DataAccessLayer.Repository.RepositoryImplementation
 
             if (category == null)
             {
-                throw new CategoryNotFoundException($"Category with id '{categoryId}' not found.");
+                return null;
             }
 
             return category;

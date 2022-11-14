@@ -2,10 +2,10 @@
 using DataAccessLayer.Exceptions;
 using DataAccessLayer.Repository.RepositoryInterfaces;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication3.DTOs.Responces;
 using WebApplication3.Mappers.MapperInterface;
 using WebApplication3.RequestsModels.RequestModels;
 using WebApplication3.Services.Interfaces;
-using WebApplication3.UserViewRequestsModel;
 
 namespace WebApplication3.Controllers
 {
@@ -27,30 +27,30 @@ namespace WebApplication3.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCategoryByID(int id) // should be from query explicitly
         {
-            try
+           
+            var categoryViewModel = await _categoryService.GetProductByIdAsync(id);
+
+            if (categoryViewModel == null)
             {
-                var categoryViewModel = await _categoryService.GetProductByIdAsync(id);
-                return Ok(categoryViewModel);
+                return StatusCode(StatusCodes.Status404NotFound);
             }
-            catch (CategoryNotFoundException ex)
-            {
-                _logger.LogError(ex, ex.Message, $"My own message"); //send message from the method
-                return NotFound();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Request has been failed");
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+
+            _logger.LogInformation($"Category: {categoryViewModel} was successfully found");
+            return Ok(categoryViewModel);
+
+           
+              
+               
+           
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> AddCategoryAsync(CategoryRequestModel categoryModel)
+        public async Task<IActionResult> AddCategoryAsync(CreateCategoryRequestModel categoryModel)
         {
             var maybeWillModifiedInFutureCategoryRequestModel = await _categoryService.CreateProductAsync(categoryModel);
 
-            _logger.LogInformation($"Product with was deleteded category id: {categoryModel.Id} was added");
+            _logger.LogInformation($"Product with was deleteded category name: {categoryModel.Name} was added");
             return Ok(maybeWillModifiedInFutureCategoryRequestModel);
 
             // GET all categories from DB
@@ -69,7 +69,7 @@ namespace WebApplication3.Controllers
 
 
         [HttpPatch]
-        public async Task<IActionResult> ChancheCategoryAsync(CategoryRequestModel categoryModel) //check this
+        public async Task<IActionResult> ChancheCategoryAsync(UpdateCategoryRequestModel categoryModel) //check this
         {
             var maybeWillModifiedInFutureCategoryRequestModel = await _categoryService.UpdateProductAsync(categoryModel);
 
@@ -82,10 +82,13 @@ namespace WebApplication3.Controllers
         public async Task<IActionResult> GetAllCategoriesAsync()
         {
 
-            var maybeModifiedInFutureategoryList = await _categoryService.GetAllProductAsync();
+            var maybeModifiedInFutureCategoryList = await _categoryService.GetAllProductAsync(); //add pagination
 
-            _logger.LogInformation($"Gategory list was found. Here all the categories: {maybeModifiedInFutureategoryList.ToList()}");
-            return Ok(maybeModifiedInFutureategoryList);
+            _logger.LogInformation($"Gategory list was found. Here all the categories: {maybeModifiedInFutureCategoryList.ToList()}");
+            return Ok(new GetAllCategoryResponse
+            {
+                CategoryResponceList = maybeModifiedInFutureCategoryList.ToList()
+            });
 
         }
     }

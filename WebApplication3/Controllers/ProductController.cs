@@ -65,25 +65,16 @@ namespace WebApplication3.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProductByIdAsync(int id)
         {
-            try
-            {
-               var productsViewModel = await _productService.GetProductByIdAsync(id);
+            var productsViewModel = await _productService.GetProductByIdAsync(id); // return null and handl null TODO
 
-                _logger.LogInformation($"Product: {productsViewModel} was found");
-                return Ok(productsViewModel);
-            }
-            catch (ProductNotFoundException ex) //why dont we need not found ex?
+            if (productsViewModel == null)
             {
-                _logger.LogError(ex, ex.Message);
-                return NotFound();
+                return StatusCode(StatusCodes.Status404NotFound);
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "request has been failed, try to debug ");
-                return StatusCode(StatusCodes.Status500InternalServerError);
 
-            }
+            _logger.LogInformation($"Product: {productsViewModel} was found");
+            return Ok(productsViewModel);
+
         }
-
     }
 }

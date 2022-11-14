@@ -41,6 +41,10 @@ namespace WebApplication3.Services.Implementations
         public async Task<ProductViewRequestModel> GetProductByIdAsync(int id)
         {
             var expectedProduct = await _prouductRepository.GetProductByIdAsync(id);
+            if (expectedProduct == null)
+            {
+                return null;
+            }
             var productsViewModel = _productMapper.Map(expectedProduct);
             return productsViewModel;
         }

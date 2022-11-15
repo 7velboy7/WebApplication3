@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Entity;
 using DataAccessLayer.Repository.RepositoryInterfaces;
+using WebApplication3.DTOs.Responces;
 using WebApplication3.Mappers.MapperInterface;
 using WebApplication3.RequestsModels.RequestModels;
 using WebApplication3.Services.Interfaces;
@@ -24,18 +25,21 @@ namespace WebApplication3.Services.Implementations
             await _prouductRepository.RemoveProductByIdAsync(id);
         }
 
-        public async Task<IEnumerable<ProductViewRequestModel>> GetAllProductAsync()
+        public async Task<AllProductsWithPaginationResponse> GetAllProductAsync(int page, int itemPerPage)
         {
             var expectedProductList = await _prouductRepository.GetAllProductsAsync();
-            var productsViewModelList = new List<ProductViewRequestModel>();
 
-            foreach (var expectedProduct in expectedProductList) // LINQ can be used as an option
+            return new AllProductsWithPaginationResponse
             {
-                var productForUserToView = _productMapper.Map(expectedProduct);
-                productsViewModelList.Add(productForUserToView);
-            }
+                ProductRespondeList = expectedProductList
+                .Skip((page - 1) * itemPerPage)
+                .Take(itemPerPage)
+                .Select(product => _productMapper.Map(product))
+                .ToList(),
+                CurrentPage = page,
+                Pages = (int)Math.Ceiling(expectedProductList.Count() / (double)itemPerPage)
 
-            return productsViewModelList;
+            };
         }
 
         public async Task<ProductViewRequestModel> GetProductByIdAsync(int id)

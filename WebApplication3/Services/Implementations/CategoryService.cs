@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Entity;
 using DataAccessLayer.Repository.RepositoryInterfaces;
+using WebApplication3.DTOs.Responces;
 using WebApplication3.Mappers.MapperInterface;
 using WebApplication3.RequestsModels.RequestModels;
 using WebApplication3.Services.Interfaces;
@@ -19,7 +20,7 @@ namespace WebApplication3.Services.Implementations
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<CreateCategoryRequestModel> CreateProductAsync(CreateCategoryRequestModel categoryRequest)
+        public async Task<CreateCategoryRequestModel> CreateCategoryAsync(CreateCategoryRequestModel categoryRequest)
         {
             var newCategory = new Category()
             {
@@ -31,26 +32,28 @@ namespace WebApplication3.Services.Implementations
             return categoryRequest;
         }
 
-        public async Task DeleteProductByIdAsync(int id)
+        public async Task DeleteCategoryByIdAsync(int id)
         {
             await _categoryRepository.RemoveCategoryByIdAsync(id);
         }
 
-        public async Task<IEnumerable<CategoryViewRequestModel>> GetAllProductAsync()
+        public async Task<AllCategoriesWithPaginationResponse> GetAllCategoriesAsync(int page, int itemsPerPage)
         {
             var expectedCategories = await _categoryRepository.GetAllCategoriesAsync();
-            var categoriesViewModelList = new List<CategoryViewRequestModel>();
-
-            foreach (var expectedCategory in expectedCategories)
+          
+            return new AllCategoriesWithPaginationResponse
             {
-                var categoryViewModelresult = _categoryMapper.Map(expectedCategory);
-                categoriesViewModelList.Add(categoryViewModelresult);
-            }
-
-            return categoriesViewModelList;
+                CategoryResponceList = expectedCategories
+                    .Skip((page - 1) * itemsPerPage)
+                    .Take(itemsPerPage)
+                    .Select(category => _categoryMapper.Map(category))
+                    .ToList(),
+                CurrentPage = page,
+                Pages = (int)Math.Ceiling(expectedCategories.Count() / (double)itemsPerPage)
+            };
         }
 
-        public async Task<CategoryViewRequestModel> GetProductByIdAsync(int id)
+        public async Task<CategoryViewRequestModel> GetCategoryByIdAsync(int id)
         {
             var expectedCategory = await _categoryRepository.GetCategorytByIdAsync(id);
             if (expectedCategory ==  null)
@@ -61,7 +64,7 @@ namespace WebApplication3.Services.Implementations
             return categoryViewModel;
         }
 
-        public async Task<UpdateCategoryRequestModel> UpdateProductAsync(UpdateCategoryRequestModel categoryRequest)
+        public async Task<UpdateCategoryRequestModel> UpdateCategoryAsync(UpdateCategoryRequestModel categoryRequest)
         {
             var expectedCategory = await _categoryRepository.GetCategorytByIdAsync(categoryRequest.Id);
             expectedCategory.Name = categoryRequest.Name;

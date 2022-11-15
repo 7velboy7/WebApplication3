@@ -2,10 +2,12 @@
 
 namespace WebApplication3.DTOs.Responces
 {
-    public class GetAllCategoryResponse
+    public class AllCategoriesWithPaginationResponse
     {
         public List<CategoryViewRequestModel> CategoryResponceList { get; set; }
         
+        public int Pages { get; set; }
+        public int CurrentPage { get; set; }
         
     }
 }

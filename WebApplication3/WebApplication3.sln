@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication3", "WebAppli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "..\DataAccessLayer\DataAccessLayer.csproj", "{FC418631-A698-4E17-AB36-A153AD0EDF1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayerTests", "..\DataAccessLayerTests\DataAccessLayerTests.csproj", "{9683A35D-A711-4996-B168-E8226E236319}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayerTests", "..\DataAccessLayerTests\DataAccessLayerTests.csproj", "{9683A35D-A711-4996-B168-E8226E236319}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication3Tests", "..\WebApplication3Tests\WebApplication3Tests.csproj", "{A5C68BAD-A63C-4A2F-AE18-E2B67DD141D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication3Tests", "..\WebApplication3Tests\WebApplication3Tests.csproj", "{A5C68BAD-A63C-4A2F-AE18-E2B67DD141D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

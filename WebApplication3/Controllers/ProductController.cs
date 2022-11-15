@@ -53,9 +53,11 @@ namespace WebApplication3.Controllers
 
         
         [HttpGet] 
-        public async Task<IActionResult> GetAllProductsAsync()
+        public async Task<IActionResult> GetAllProductsAsync([FromQuery] int page)
         {
-            var productsViewModelList = await _productService.GetAllProductAsync();
+            const int itemsPerPage = 20;
+
+            var productsViewModelList = await _productService.GetAllProductAsync(page, itemsPerPage);
 
             _logger.LogInformation($"Products list was found. Here all the products: {productsViewModelList.ToList()}");
             return Ok(productsViewModelList);

@@ -13,6 +13,8 @@ using DataAccessLayer.Contexts;
 using DataAccessLayer.Repository.RepositoryInterfaces;
 using WebApplication3.UserViewRequestsModel;
 using Serilog;
+using WebApplication3.Services.Interfaces;
+using WebApplication3.Services.Implementations;
 
 // TODO: 
 /// <summary>
@@ -44,6 +46,8 @@ builder.Services.AddDbContext<Context>(options => options.UseSqlServer(builder.C
 x => x.MigrationsAssembly(typeof(Context).Assembly.GetName().Name)));
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<ICategotyService, CategoryService>();
+builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IMapper<Category, CategoryViewRequestModel>, CategoryMapper>();
 builder.Services.AddTransient<IMapper<Product, ProductViewRequestModel>, ProductMapper>();
 

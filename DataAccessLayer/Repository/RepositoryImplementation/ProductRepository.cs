@@ -1,14 +1,8 @@
 ﻿using DataAccessLayer.Contexts;
 using DataAccessLayer.Entity;
-using DataAccessLayer.Exceptions;
 using DataAccessLayer.Repository.RepositoryInterfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace DataAccessLayer.Repository.RepositoryImplementation
 {
     public class ProductRepository : IProductRepository
@@ -29,7 +23,9 @@ namespace DataAccessLayer.Repository.RepositoryImplementation
 
         public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return await _context.Products.Include(products => products.CategoryId).ToListAsync();
+            
+            return await _context.Products.Include(products => products.CategoryId)
+                .ToListAsync();
         }
 
         public async Task<Product> GetProductByIdAsync(int productId)

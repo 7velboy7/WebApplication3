@@ -28,7 +28,7 @@ namespace WebApplication3.Controllers
         public async Task<IActionResult> GetCategoryByID(int id) // should be from query explicitly
         {
            
-            var categoryViewModel = await _categoryService.GetProductByIdAsync(id);
+            var categoryViewModel = await _categoryService.GetCategoryByIdAsync(id);
 
             if (categoryViewModel == null)
             {
@@ -38,17 +38,13 @@ namespace WebApplication3.Controllers
             _logger.LogInformation($"Category: {categoryViewModel} was successfully found");
             return Ok(categoryViewModel);
 
-           
-              
-               
-           
         }
 
 
         [HttpPost]
         public async Task<IActionResult> AddCategoryAsync(CreateCategoryRequestModel categoryModel)
         {
-            var maybeWillModifiedInFutureCategoryRequestModel = await _categoryService.CreateProductAsync(categoryModel);
+            var maybeWillModifiedInFutureCategoryRequestModel = await _categoryService.CreateCategoryAsync(categoryModel);
 
             _logger.LogInformation($"Product with was deleteded category name: {categoryModel.Name} was added");
             return Ok(maybeWillModifiedInFutureCategoryRequestModel);
@@ -60,7 +56,7 @@ namespace WebApplication3.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteCategoryAsync(int id)
         {
-           await _categoryService.DeleteProductByIdAsync(id);
+           await _categoryService.DeleteCategoryByIdAsync(id);
 
             _logger.LogInformation($"Category with id:{id} was removed");
             return NoContent();
@@ -69,9 +65,9 @@ namespace WebApplication3.Controllers
 
 
         [HttpPatch]
-        public async Task<IActionResult> ChancheCategoryAsync(UpdateCategoryRequestModel categoryModel) //check this
+        public async Task<IActionResult> ChangeCategoryAsync(UpdateCategoryRequestModel categoryModel) //check this
         {
-            var maybeWillModifiedInFutureCategoryRequestModel = await _categoryService.UpdateProductAsync(categoryModel);
+            var maybeWillModifiedInFutureCategoryRequestModel = await _categoryService.UpdateCategoryAsync(categoryModel);
 
             _logger.LogInformation($"Category {categoryModel} with id: {categoryModel.Id} was changed");
             return Ok(maybeWillModifiedInFutureCategoryRequestModel);
@@ -79,16 +75,16 @@ namespace WebApplication3.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCategoriesAsync()
+        public async Task<IActionResult> GetAllCategoriesAsync([FromQuery]int page)
         {
+            const int itemsPerPage = 5;
+            var maybeModifiedInFutureCategoryList = await _categoryService.GetAllCategoriesAsync(page, itemsPerPage); //add pagination
 
-            var maybeModifiedInFutureCategoryList = await _categoryService.GetAllProductAsync(); //add pagination
 
-            _logger.LogInformation($"Gategory list was found. Here all the categories: {maybeModifiedInFutureCategoryList.ToList()}");
-            return Ok(new GetAllCategoryResponse
-            {
-                CategoryResponceList = maybeModifiedInFutureCategoryList.ToList()
-            });
+            _logger.LogInformation($"Gategory list was found. Here all the categories via pagination: {maybeModifiedInFutureCategoryList}");
+
+            
+            return Ok(maybeModifiedInFutureCategoryList);
 
         }
     }

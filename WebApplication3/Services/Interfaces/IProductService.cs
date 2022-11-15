@@ -10,6 +10,6 @@ namespace WebApplication3.Services.Interfaces
         Task<ProductRequestModel> UpdateProductAsync(ProductRequestModel productRequest);
         Task DeleteProductByIdAsync(int id);
         Task<ProductViewRequestModel> GetProductByIdAsync(int id);
-        Task<IEnumerable<ProductViewRequestModel>> GetAllProductAsync();
+        Task<IEnumerable<ProductViewRequestModel>> GetAllProductAsync(int page, int itemPerPage);
     }
 }

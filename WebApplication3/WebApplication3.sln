@@ -7,9 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication3", "WebAppli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "..\DataAccessLayer\DataAccessLayer.csproj", "{FC418631-A698-4E17-AB36-A153AD0EDF1F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayerTests", "..\DataAccessLayerTests\DataAccessLayerTests.csproj", "{9683A35D-A711-4996-B168-E8226E236319}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayerNunitTests", "..\DataAccessLayerTests\DataAccessLayerNunitTests.csproj", "{9683A35D-A711-4996-B168-E8226E236319}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication3Tests", "..\WebApplication3Tests\WebApplication3Tests.csproj", "{A5C68BAD-A63C-4A2F-AE18-E2B67DD141D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication3NunitTests", "..\WebApplication3Tests\WebApplication3NunitTests.csproj", "{A5C68BAD-A63C-4A2F-AE18-E2B67DD141D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{093E5769-2836-493F-9FE2-02E5C60B199C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assemblies", "Assemblies", "{BCC2B7C0-3060-4281-8245-677A6B0DD2AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NunitTests", "NunitTests", "{FEA7090A-63EF-44A6-9C66-72DB2A809F3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XunitTests", "XunitTests", "{2C556561-15D2-43F0-A03E-AAC3E7D1D65D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +44,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6E29D567-2951-48C9-94DD-59387E62506B} = {BCC2B7C0-3060-4281-8245-677A6B0DD2AD}
+		{FC418631-A698-4E17-AB36-A153AD0EDF1F} = {BCC2B7C0-3060-4281-8245-677A6B0DD2AD}
+		{9683A35D-A711-4996-B168-E8226E236319} = {FEA7090A-63EF-44A6-9C66-72DB2A809F3C}
+		{A5C68BAD-A63C-4A2F-AE18-E2B67DD141D4} = {FEA7090A-63EF-44A6-9C66-72DB2A809F3C}
+		{FEA7090A-63EF-44A6-9C66-72DB2A809F3C} = {093E5769-2836-493F-9FE2-02E5C60B199C}
+		{2C556561-15D2-43F0-A03E-AAC3E7D1D65D} = {093E5769-2836-493F-9FE2-02E5C60B199C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CD025B3-B969-46C9-826B-3E343C4FD0A7}

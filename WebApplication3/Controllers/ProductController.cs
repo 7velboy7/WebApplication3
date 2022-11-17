@@ -59,7 +59,7 @@ namespace WebApplication3.Controllers
 
             var productsViewModelList = await _productService.GetAllProductAsync(page, itemsPerPage);
 
-            _logger.LogInformation($"Products list was found. Here all the products: {productsViewModelList.ToList()}");
+            _logger.LogInformation($"Products list was found. Here all the products: {productsViewModelList}");
             return Ok(productsViewModelList);
         }
 

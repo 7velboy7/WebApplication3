@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Entity;
+﻿
+using WebApplication3.DTOs.Responces;
 using WebApplication3.RequestsModels.RequestModels;
 using WebApplication3.UserViewRequestsModel;
 
@@ -10,6 +11,6 @@ namespace WebApplication3.Services.Interfaces
         Task<ProductRequestModel> UpdateProductAsync(ProductRequestModel productRequest);
         Task DeleteProductByIdAsync(int id);
         Task<ProductViewRequestModel> GetProductByIdAsync(int id);
-        Task<IEnumerable<ProductViewRequestModel>> GetAllProductAsync(int page, int itemPerPage);
+        Task<AllProductsWithPaginationResponse> GetAllProductAsync(int page, int itemPerPage);
     }
 }

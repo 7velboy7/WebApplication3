@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DBJLuG63knWKWodRbcs6x9myzP5sY98eBgosBZJ3xuEeoGi2Dj3r3CBc1zBPU1wnhd2rFLc80sGCAZIrJfcgcg==",
+  "dgSpecHash": "rZj/hw3ea37uOvM68J6KebywWA7YPkGpB7NG4F5Z/Lf8d27eHAU3XKcwa7HKN2LLhTIXGD+bclKMuY+Q6WlFmQ==",
   "success": true,
-  "projectFilePath": "C:\\Projects\\WebApp3\\DataAccessLayerTests\\DataAccessLayerTests.csproj",
+  "projectFilePath": "C:\\Projects\\WebApp3\\DataAccessLayerTests\\DataAccessLayerNunitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\oleksandra.velboi\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
     "C:\\Users\\oleksandra.velboi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

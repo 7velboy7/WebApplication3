@@ -6589,9 +6589,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\WebApp3\\DataAccessLayerTests\\DataAccessLayerTests.csproj",
-      "projectName": "DataAccessLayerTests",
-      "projectPath": "C:\\Projects\\WebApp3\\DataAccessLayerTests\\DataAccessLayerTests.csproj",
+      "projectUniqueName": "C:\\Projects\\WebApp3\\DataAccessLayerTests\\DataAccessLayerNunitTests.csproj",
+      "projectName": "DataAccessLayerNunitTests",
+      "projectPath": "C:\\Projects\\WebApp3\\DataAccessLayerTests\\DataAccessLayerNunitTests.csproj",
       "packagesPath": "C:\\Users\\oleksandra.velboi\\.nuget\\packages\\",
       "outputPath": "C:\\Projects\\WebApp3\\DataAccessLayerTests\\obj\\",
       "projectStyle": "PackageReference",

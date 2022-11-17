@@ -7045,9 +7045,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\WebApp3\\WebApplication3Tests\\WebApplication3Tests.csproj",
-      "projectName": "WebApplication3Tests",
-      "projectPath": "C:\\Projects\\WebApp3\\WebApplication3Tests\\WebApplication3Tests.csproj",
+      "projectUniqueName": "C:\\Projects\\WebApp3\\WebApplication3Tests\\WebApplication3NunitTests.csproj",
+      "projectName": "WebApplication3NunitTests",
+      "projectPath": "C:\\Projects\\WebApp3\\WebApplication3Tests\\WebApplication3NunitTests.csproj",
       "packagesPath": "C:\\Users\\oleksandra.velboi\\.nuget\\packages\\",
       "outputPath": "C:\\Projects\\WebApp3\\WebApplication3Tests\\obj\\",
       "projectStyle": "PackageReference",
